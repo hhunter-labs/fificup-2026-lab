@@ -1,0 +1,45 @@
+team_a,team_b,stage,team_a_goals,team_b_goals,actual_winner,knockout_winner
+Qatar,Ecuador,Group Stage,0,2,Ecuador,Ecuador
+England,Iran,Group Stage,6,2,England,England
+Senegal,Netherlands,Group Stage,0,2,Netherlands,Netherlands
+USA,Wales,Group Stage,1,1,Draw,Draw
+Argentina,Saudi Arabia,Group Stage,1,2,Saudi Arabia,Saudi Arabia
+Denmark,Tunisia,Group Stage,0,0,Draw,Draw
+Mexico,Poland,Group Stage,0,0,Draw,Draw
+France,Australia,Group Stage,4,1,France,France
+Morocco,Croatia,Group Stage,0,0,Draw,Draw
+Germany,Japan,Group Stage,1,2,Japan,Japan
+Spain,Costa Rica,Group Stage,7,0,Spain,Spain
+Belgium,Canada,Group Stage,1,0,Belgium,Belgium
+Switzerland,Cameroon,Group Stage,1,0,Switzerland,Switzerland
+Uruguay,South Korea,Group Stage,0,0,Draw,Draw
+Portugal,Ghana,Group Stage,3,2,Portugal,Portugal
+Brazil,Serbia,Group Stage,2,0,Brazil,Brazil
+Wales,Iran,Group Stage,0,2,Iran,Iran
+Netherlands,Ecuador,Group Stage,1,1,Draw,Draw
+England,USA,Group Stage,0,0,Draw,Draw
+France,Denmark,Group Stage,2,1,France,France
+Argentina,Mexico,Group Stage,2,0,Argentina,Argentina
+Japan,Costa Rica,Group Stage,0,1,Costa Rica,Costa Rica
+Belgium,Morocco,Group Stage,0,2,Morocco,Morocco
+Croatia,Canada,Group Stage,4,1,Croatia,Croatia
+Spain,Germany,Group Stage,1,1,Draw,Draw
+Japan,Spain,Group Stage,2,1,Japan,Japan
+South Korea,Portugal,Group Stage,2,1,South Korea,South Korea
+Ghana,Uruguay,Group Stage,0,2,Uruguay,Uruguay
+South Korea,Brazil,Round of 16,1,4,Brazil,Brazil
+Japan,Croatia,Round of 16,1,1,Croatia,Croatia
+Morocco,Spain,Round of 16,0,0,Morocco,Morocco
+Portugal,Switzerland,Round of 16,6,1,Portugal,Portugal
+France,Poland,Round of 16,3,1,France,France
+Argentina,Australia,Round of 16,2,1,Argentina,Argentina
+Netherlands,USA,Round of 16,3,1,Netherlands,Netherlands
+England,Senegal,Round of 16,3,0,England,England
+Croatia,Brazil,Quarterfinal,1,1,Croatia,Croatia
+Netherlands,Argentina,Quarterfinal,2,2,Argentina,Argentina
+Morocco,Portugal,Quarterfinal,1,0,Morocco,Morocco
+England,France,Quarterfinal,1,2,France,France
+Argentina,Croatia,Semifinal,3,0,Argentina,Argentina
+France,Morocco,Semifinal,2,0,France,France
+Croatia,Morocco,Third Place,2,1,Croatia,Croatia
+Argentina,France,Final,3,3,Argentina,Argentina
