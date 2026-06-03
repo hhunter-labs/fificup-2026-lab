@@ -15,7 +15,7 @@ st.set_page_config(
     page_title="World Cup Match Lab ⚽",
     page_icon="⚽",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 from src.data_loader import load_teams, load_venues, get_team_row, get_venue_row
@@ -413,6 +413,14 @@ with st.sidebar:
 if page == "🏠  Home":
     BALL = os.path.join(os.path.dirname(__file__), "assets", "ball_transparent.png")
     hero_section(ball_image_path=BALL if os.path.exists(BALL) else None)
+
+    # Sidebar hint — only shown on first visit (collapsed by default)
+    st.markdown("""
+<div style="display:flex;align-items:center;gap:8px;margin:-0.5rem 0 1.5rem 0;
+            color:#334155;font-size:11px;font-weight:600;letter-spacing:1px;">
+  <span>☰</span>
+  <span>Open the menu on the top-left to navigate all pages</span>
+</div>""", unsafe_allow_html=True)
 
     # ── The Odds Board — 6 clickable insight cards ───────────────────────────
     section_header("🎰 The Odds Board")
