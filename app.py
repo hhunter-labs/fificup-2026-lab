@@ -1632,7 +1632,7 @@ def generate_narrative(prompt, context):
 
 # Example LLM integration:
 import anthropic
-client = anthropic.Anthropic(api_key="KEY")
+client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 return client.messages.create(model="claude-opus-4-5", max_tokens=400,
     messages=[{"role":"user","content":prompt}]).content[0].text
 ```
