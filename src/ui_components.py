@@ -801,95 +801,103 @@ def hero_section(
     ball_image_path: str = None,
 ):
     """
-    Hero with ball image served via Streamlit's static file server (/app/static/).
-    No base64, no st.image() container — pure <img> tag inside the hero HTML.
+    Hero section. Uses st.html() + base64 image embedding so the ball renders
+    identically on local and Streamlit Cloud — no static URL routing dependency.
     """
-    import os
+    import os, base64
 
-    # Streamlit serves files from /static/ when enableStaticServing=true in config.toml
-    # The file must exist at:  <project_root>/static/ball.png
-    ball_url = "/app/static/ball.png"
-    static_path = os.path.join(os.path.dirname(__file__), "..", "static", "ball.png")
-    has_ball = os.path.exists(static_path)
+    # Locate ball: prefer passed path, then look in static/ relative to this file
+    _path = ball_image_path
+    if not _path or not os.path.exists(_path):
+        _path = os.path.join(os.path.dirname(__file__), "..", "static", "ball.png")
 
+    # Encode to base64 so the image is self-contained in the HTML — works everywhere
+    if os.path.exists(_path):
+        with open(_path, "rb") as f:
+            ball_b64 = base64.b64encode(f.read()).decode()
+        ball_src  = f"data:image/png;base64,{ball_b64}"
+        has_ball  = True
+    else:
+        has_ball  = False
+        ball_src  = ""
+
+    # Use st.html() — bypasses Streamlit's markdown sanitizer entirely,
+    # so complex HTML with animations and base64 images renders without issues.
     if has_ball:
-        st.markdown(f"""
+        st.html(f"""
 <style>
 @keyframes ballFloat {{
-    0%,100% {{ transform: translateY(0px)   rotate(0deg); }}
-    50%      {{ transform: translateY(-10px) rotate(4deg); }}
+    0%,100% {{ transform:translateY(0px) rotate(0deg); }}
+    50%      {{ transform:translateY(-10px) rotate(4deg); }}
 }}
 @keyframes ballReveal {{
     from {{ opacity:0; transform:translateX(40px) scale(0.88); }}
     to   {{ opacity:1; transform:translateX(0)    scale(1);    }}
 }}
-.hero-ball-img {{
+.hero-ball-b64 {{
     position:relative; z-index:1;
     width:280px; height:auto;
     display:block; margin-left:auto;
-    /* Left edge fades to transparent, right edge is fully visible */
-    -webkit-mask-image: linear-gradient(to right,
-        transparent 0%,
-        rgba(0,0,0,0.05) 10%,
-        rgba(0,0,0,0.5)  35%,
-        black 58%);
-    mask-image: linear-gradient(to right,
-        transparent 0%,
-        rgba(0,0,0,0.05) 10%,
-        rgba(0,0,0,0.5)  35%,
-        black 58%);
-    filter: drop-shadow(0 0 28px rgba(0,212,255,0.35))
-            drop-shadow(0 12px 36px rgba(0,0,0,0.6));
-    animation: ballReveal 0.9s cubic-bezier(0.2,0,0,1) both,
-               ballFloat  6s ease-in-out 1.2s infinite;
+    -webkit-mask-image:linear-gradient(to right,
+        transparent 0%, rgba(0,0,0,0.05) 10%,
+        rgba(0,0,0,0.5) 35%, black 58%);
+    mask-image:linear-gradient(to right,
+        transparent 0%, rgba(0,0,0,0.05) 10%,
+        rgba(0,0,0,0.5) 35%, black 58%);
+    filter:drop-shadow(0 0 28px rgba(0,212,255,0.35))
+           drop-shadow(0 12px 36px rgba(0,0,0,0.6));
+    animation:ballReveal 0.9s cubic-bezier(0.2,0,0,1) both,
+              ballFloat  6s ease-in-out 1.2s infinite;
 }}
 </style>
-
 <div style="
     position:relative; overflow:hidden; border-radius:20px;
     margin-bottom:2rem;
     background:linear-gradient(135deg,#0d1226 0%,#0f0a20 45%,#0d1226 100%);
     border:1px solid rgba(0,212,255,0.15);
-    box-shadow:0 0 0 1px rgba(0,212,255,0.05), 0 20px 60px rgba(0,0,0,0.6);
-    display:flex; align-items:center;
-    min-height:190px;
+    box-shadow:0 0 0 1px rgba(0,212,255,0.05),0 20px 60px rgba(0,0,0,0.6);
+    display:flex; align-items:center; min-height:190px;
 ">
-  <!-- hairline top accent -->
   <div style="position:absolute;top:0;left:8%;right:8%;height:1px;
-      background:linear-gradient(90deg,transparent,rgba(0,212,255,0.45),transparent);"></div>
-
-  <!-- left: text content -->
-  <div style="flex:1; padding:2rem 1rem 2rem 2.5rem; position:relative; z-index:2; min-width:0;">
-    <div class="hero-eyebrow">⚽ 2026 FIFA World Cup · AI Prediction Playground</div>
-    <h1 class="hero-title">{title}</h1>
-    <p class="hero-tagline">{tagline}</p>
+    background:linear-gradient(90deg,transparent,rgba(0,212,255,0.45),transparent);"></div>
+  <div style="flex:1;padding:2rem 1rem 2rem 2.5rem;position:relative;z-index:2;min-width:0;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+                color:#00d4ff;margin-bottom:.4rem;opacity:.8;">
+      ⚽ 2026 FIFA World Cup · AI Prediction
+    </div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+                color:#475569;margin-bottom:.75rem;">
+      By Harry Hunter, PhD, MPH
+    </div>
+    <h1 style="font-family:'Bebas Neue',sans-serif;
+               font-size:clamp(2.8rem,6vw,4.5rem);line-height:0.95;letter-spacing:3px;
+               background:linear-gradient(135deg,#ffffff 0%,#e2e8f0 30%,#00d4ff 60%,#7b2fff 100%);
+               -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+               background-clip:text;margin:0 0 .75rem 0;text-transform:uppercase;">
+      {title}
+    </h1>
+    <p style="font-size:1.05rem;color:#64748b;font-weight:400;letter-spacing:.5px;margin:0;">
+      {tagline}
+    </p>
   </div>
-
-  <!-- right: ball -->
-  <div style="
-      flex:0 0 300px; position:relative;
-      display:flex; align-items:center; justify-content:flex-end;
-      padding-right:1.5rem; align-self:stretch; overflow:visible;
-  ">
-    <!-- glow blob behind ball -->
-    <div style="
-        position:absolute; right:0; top:50%; transform:translateY(-50%);
-        width:340px; height:340px; border-radius:50%; pointer-events:none;
-        background:radial-gradient(circle,
-            rgba(0,212,255,0.13) 0%,
-            rgba(123,47,255,0.09) 48%,
-            transparent 70%);
-    "></div>
-    <img class="hero-ball-img" src="{ball_url}" alt="FIFA 2026 Ball">
+  <div style="flex:0 0 300px;position:relative;display:flex;align-items:center;
+              justify-content:flex-end;padding-right:1.5rem;align-self:stretch;overflow:visible;">
+    <div style="position:absolute;right:0;top:50%;transform:translateY(-50%);
+                width:340px;height:340px;border-radius:50%;pointer-events:none;
+                background:radial-gradient(circle,rgba(0,212,255,0.13) 0%,
+                rgba(123,47,255,0.09) 48%,transparent 70%);"></div>
+    <img class="hero-ball-b64" src="{ball_src}" alt="FIFA 2026 Ball">
   </div>
 </div>
-""", unsafe_allow_html=True)
+""")
 
     else:
-        # Fallback: text-only (no ball file found)
+        # Fallback: text-only
         st.markdown(f"""
 <div class="hero-outer">
-  <div class="hero-eyebrow">⚽ 2026 FIFA World Cup · AI Prediction Playground</div>
+  <div class="hero-eyebrow">⚽ 2026 FIFA World Cup · AI Prediction</div>
+  <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+              color:#475569;margin-bottom:.75rem;">By Harry Hunter, PhD, MPH</div>
   <h1 class="hero-title">{title}</h1>
   <p class="hero-tagline">{tagline}</p>
 </div>""", unsafe_allow_html=True)
