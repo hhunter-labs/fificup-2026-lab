@@ -1,65 +1,76 @@
 # Contributing to World Cup Match Lab
 
-Thanks for your interest in contributing! This document covers how to get set up, what we look for in contributions, and how to submit changes.
+Thank you for your interest in contributing. This document covers development setup, code standards, and the pull request process.
 
 ---
 
-## 🚀 Development Setup
+## Development Setup
 
 ```bash
 git clone https://github.com/hhunter-labs/fificup-2026-lab.git
 cd fificup-2026-lab
-python -m venv venv && source venv/bin/activate
+
+python -m venv venv
+source venv/bin/activate          # macOS / Linux
+# venv\Scripts\activate           # Windows
+
 pip install -r requirements.txt
-streamlit run app.py
+streamlit run app.py              # Opens at http://localhost:8501
 ```
 
 ---
 
-## 📐 Code Standards
-
-| Area | Standard |
-|------|----------|
-| Style | PEP 8. Functions < 60 lines. Clear variable names. |
-| HTML in Streamlit | **Never** put conditional logic inside `st.markdown()` f-strings. Pre-compute HTML variables in Python first. Use `st.html()` for complex multi-block structures. |
-| Plotly colors | Never use `"transparent"` — use `"rgba(0,0,0,0)"` |
-| Session state | Never set a widget key that has already been rendered in the current run. Use the `_pending_page` pattern for cross-page navigation. |
-| Performance | All heavy computation behind `@st.cache_data`. Use `@st.fragment` to isolate fast-changing sections. |
-| Data | Keep sample data clearly labeled. Never claim real-time data unless actually implemented. |
-
----
-
-## 🧪 Running Tests
+## Running Tests
 
 ```bash
-cd fificup-2026-lab
 python -m pytest tests/ -v
 ```
 
+All 40 tests should pass before opening a pull request.
+
 ---
 
-## 🔀 Pull Request Process
+## Code Standards
 
-1. Fork the repo and create a branch: `git checkout -b feature/your-feature`
+| Area | Standard |
+|------|----------|
+| Style | PEP 8. Functions under 60 lines. Descriptive variable names. |
+| HTML in Streamlit | Never embed conditional logic inside `st.markdown()` f-strings. Pre-compute HTML variables in Python first. Use `st.html()` for complex multi-block HTML structures. |
+| Plotly colors | Never pass `"transparent"` to a color property — use `"rgba(0,0,0,0)"` instead. |
+| Session state | Never set a widget's session state key after that widget has already rendered in the current script run. Use the `_pending_page` two-rerun navigation pattern for cross-page routing. |
+| Performance | All heavy computation must be behind `@st.cache_data`. Use `@st.fragment` to isolate live-updating sections from the rest of the page. |
+| Data integrity | Sample data must remain clearly labeled. Never claim real-time data unless a live data pipeline is actually implemented. |
+
+---
+
+## Pull Request Process
+
+1. Fork the repository and create a feature branch from `main`
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 2. Make your changes following the code standards above
-3. Run tests: `python -m pytest tests/`
-4. Open a PR against `main` using the PR template
-5. A maintainer will review within 48 hours
+3. Run the full test suite and confirm all tests pass
+4. Open a pull request against `main` using the provided PR template
+5. A maintainer will review and respond within 48 hours
 
 ---
 
-## 💡 Good First Issues
+## Good First Contributions
 
-- Adding more teams to `data/teams.csv`
-- Improving the rule-based analyst narratives in `src/explainers.py`
-- Adding new visualizations to `src/visualizations.py`
-- Writing additional unit tests in `tests/`
-- Improving mobile CSS responsiveness
+- Add teams to `data/teams.csv` with accurate ratings
+- Improve analyst narrative templates in `src/explainers.py`
+- Add new chart types to `src/visualizations.py`
+- Expand the test suite in `tests/test_core.py`
+- Improve CSS responsiveness for mobile viewports
 
 ---
 
-## ⚠️ Out of Scope
+## Out of Scope
 
-- Real-money wagering features
-- Official FIFA data integration without proper licensing
-- Any feature that removes the sample data disclaimer
+The following will not be accepted:
+
+- Real-money wagering or odds integration
+- Official FIFA data without verifiable licensing
+- Changes that remove or weaken the sample data disclaimer
+- Dependencies that require paid external API keys at runtime

@@ -1,8 +1,23 @@
-streamlit>=1.35.0
+# World Cup Match Lab — Python Dependencies
+# Install: pip install -r requirements.txt
+
+# ── UI Framework ──────────────────────────────────────────────────────────────
+streamlit>=1.35.0,<2.0.0
+
+# ── Data & Computation ────────────────────────────────────────────────────────
 pandas>=2.0.0
 numpy>=1.26.0
-plotly>=5.20.0
 scipy>=1.12.0
-scikit-learn>=1.4.0
+
+# ── Visualization ─────────────────────────────────────────────────────────────
+plotly>=5.20.0
+
+# ── Image Processing (hero ball background removal) ───────────────────────────
 Pillow>=10.0.0
+
+# ── Optional: AI Narratives (Anthropic API) ───────────────────────────────────
+# Set ANTHROPIC_API_KEY in .streamlit/secrets.toml to activate
 anthropic>=0.25.0
+
+# ── ML Utilities ─────────────────────────────────────────────────────────────
+scikit-learn>=1.4.0

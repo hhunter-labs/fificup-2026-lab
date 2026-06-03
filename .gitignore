@@ -1,4 +1,4 @@
-# Python
+# ── Python ────────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
@@ -9,32 +9,55 @@ dist/
 build/
 .eggs/
 
-# Virtual environments
+# ── Virtual environments ──────────────────────────────────────────────────────
 venv/
 .venv/
 env/
 .env
 
-# Secrets — never commit API keys
+# ── Streamlit secrets — NEVER commit API keys ─────────────────────────────────
 .streamlit/secrets.toml
+
+# ── Environment variables ─────────────────────────────────────────────────────
 *.env
 .env.*
+.envrc
 
-# macOS
+# ── macOS ─────────────────────────────────────────────────────────────────────
 .DS_Store
 .AppleDouble
 .LSOverride
+Icon?
+._*
 
-# IDE
+# ── Intermediate image assets (raw/unprocessed) ───────────────────────────────
+assets/ball.png
+assets/ball_clean.png
+assets/Screenshot*.png
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
-# Logs
+# ── Logs ──────────────────────────────────────────────────────────────────────
 *.log
-/tmp/
+logs/
 
-# Large model artifacts
+# ── Test / coverage cache ─────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ── Large model artifacts ─────────────────────────────────────────────────────
 *.pkl
 *.joblib
 *.h5
+*.model
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb

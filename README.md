@@ -6,13 +6,12 @@
 
 ### *Predict matches. Build brackets. Spot upsets before they happen.*
 
+[![CI](https://github.com/hhunter-labs/fificup-2026-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/hhunter-labs/fificup-2026-lab/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-3776ab?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.50-ff4b4b?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io)
-[![Plotly](https://img.shields.io/badge/Plotly-5.20-3f4f75?style=flat-square&logo=plotly&logoColor=white)](https://plotly.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-40%20passing-22c55e?style=flat-square)](.github/workflows/ci.yml)
 
-**An AI-powered prediction playground for the 2026 FIFA World Cup** — built to feel like ESPN meets DraftKings, not a data science notebook.
+**An AI-powered prediction engine for the 2026 FIFA World Cup** — built to feel like ESPN meets DraftKings, not a data science notebook.
 
 [**Live Demo**](https://worldcup-match-lab.streamlit.app) &nbsp;|&nbsp; [Features](#features) &nbsp;|&nbsp; [Quick Start](#quick-start) &nbsp;|&nbsp; [Architecture](#architecture) &nbsp;|&nbsp; [Contributing](#contributing)
 
