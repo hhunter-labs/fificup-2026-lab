@@ -2,7 +2,7 @@
 
 <img src="static/ball.png" alt="FIFA 2026 Ball" width="120" />
 
-# ⚽ World Cup Match Lab
+# World Cup Match Lab
 
 ### *Predict matches. Build brackets. Spot upsets before they happen.*
 
@@ -10,45 +10,52 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.50-ff4b4b?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io)
 [![Plotly](https://img.shields.io/badge/Plotly-5.20-3f4f75?style=flat-square&logo=plotly&logoColor=white)](https://plotly.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
-[![Code Style](https://img.shields.io/badge/code%20style-clean-00d4ff?style=flat-square)](.github/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-40%20passing-22c55e?style=flat-square)](.github/workflows/ci.yml)
 
 **An AI-powered prediction playground for the 2026 FIFA World Cup** — built to feel like ESPN meets DraftKings, not a data science notebook.
 
-[**Live Demo →**](https://fificup-2026-lab.streamlit.app) &nbsp;|&nbsp; [Features](#-features) &nbsp;|&nbsp; [Quick Start](#-quick-start) &nbsp;|&nbsp; [Architecture](#-architecture) &nbsp;|&nbsp; [Contributing](#-contributing)
+[**Live Demo**](https://worldcup-match-lab.streamlit.app) &nbsp;|&nbsp; [Features](#features) &nbsp;|&nbsp; [Quick Start](#quick-start) &nbsp;|&nbsp; [Architecture](#architecture) &nbsp;|&nbsp; [Contributing](#contributing)
 
 </div>
 
 ---
 
-## 📸 Screenshots
+## Author
+
+**H. Hunter, PhD, MPH**
+[GitHub](https://github.com/hhunter-labs)
+
+---
+
+## Screenshots
 
 | Home — The Odds Board | Predict Match — Live H2H | Build Bracket |
 |---|---|---|
-| *KPI cards that navigate* | *Auto-predicts as you type* | *4 simulation modes* |
+| *Insight cards that navigate* | *Auto-predicts as you change teams* | *4 simulation modes* |
 
 | Upset Radar | Team Power Cards | Model Accuracy |
 |---|---|---|
-| *Ranked upset threats* | *Compare mode + radar* | *Qatar 2022 backtest* |
+| *Ranked upset threats* | *Compare mode + radar chart* | *Qatar 2022 backtest* |
 
 ---
 
-## ✨ Features
+## Features
 
 | Page | What it does |
 |---|---|
-| 🏠 **Home / The Odds Board** | Live featured matchup + 6 insight cards that navigate to the right page with pre-loaded teams |
-| ⚽ **Predict Match** | Auto-predicts at 5ms as you change teams — no button needed. Shows win probabilities, xG, scoreline, confidence intervals, feature attribution, and a shareable card |
-| 🏆 **Build Bracket** | Full single-elimination simulation in Smart / Chaos / Dark Horse / Fan Favorite mode. Re-Roll for a different outcome |
-| 🚨 **Upset Radar** | Ranked upset alerts filtered by risk level — Chaos Alert, Banana Peel, Trap Game, Minor Risk |
-| 🃏 **Team Power Cards** | Deep-dive any team's attributes with radar chart + side-by-side Compare Mode for any two teams |
-| 🗺️ **Venue Vibes** | Interactive geo map of all 16 2026 host cities with altitude, heat, and crowd energy analysis |
-| ❓ **Can My Team Win?** | Monte Carlo finish distribution + verdict card + danger matchup for any of 32 teams |
-| 📊 **Model Accuracy** | Qatar 2022 backtest — 63% overall accuracy, 81% knockout accuracy, calibration curve, model card |
-| ⚙️ **How It Works** | System architecture, Poisson model, Monte Carlo simulation, LLM plug-in point |
+| Home / The Odds Board | Live featured matchup + 6 insight cards that navigate to the right page with pre-loaded teams |
+| Predict Match | Auto-predicts at 5ms as you change teams — no button needed. Shows win probabilities, xG, scoreline, confidence intervals, feature attribution, and a shareable card |
+| Build Bracket | Full single-elimination simulation in Smart / Chaos / Dark Horse / Fan Favorite mode. Re-Roll for a different outcome |
+| Upset Radar | Ranked upset alerts filtered by risk level — Chaos Alert, Banana Peel, Trap Game, Minor Risk |
+| Team Power Cards | Deep-dive any team's attributes with radar chart + side-by-side Compare Mode for any two teams |
+| Venue Vibes | Interactive geo map of all 16 2026 host cities with altitude, heat, and crowd energy analysis |
+| Can My Team Win? | Monte Carlo finish distribution + verdict card + danger matchup for any of 32 teams |
+| Model Accuracy | Qatar 2022 backtest: 63% overall accuracy, 81% knockout accuracy, calibration curve, model card |
+| How It Works | System architecture, Poisson model, Monte Carlo simulation, LLM plug-in point |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repo
@@ -71,7 +78,7 @@ App opens at **http://localhost:8501**
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Raw Data (CSV)
@@ -111,7 +118,7 @@ Raw Data (CSV)
 ┌─────────────────────────────────────┐
 │       Explainability Layer          │
 │  Rule-based analyst voice           │
-│  generate_narrative() ← LLM slot   │
+│  generate_narrative() — LLM slot   │
 └──────────────┬──────────────────────┘
                │
                ▼
@@ -124,12 +131,12 @@ Raw Data (CSV)
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 fificup-2026-lab/
 │
-├── app.py                      # Main entry point (1,600+ lines)
+├── app.py                      # Main entry point
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # This file
 ├── LICENSE                     # MIT
@@ -153,14 +160,11 @@ fificup-2026-lab/
 ├── static/                     # Served by Streamlit static file server
 │   └── ball.png                # FIFA 2026 Trionda ball (transparent bg)
 │
-├── assets/                     # Raw image assets
-│   └── ball_transparent.png    # Flood-fill processed PNG
-│
 ├── scripts/                    # Utility scripts
 │   └── fetch_elo_ratings.py    # Weekly Elo data refresh
 │
 ├── tests/                      # Test suite
-│   └── test_core.py            # Unit + integration tests
+│   └── test_core.py            # 40 unit + integration tests
 │
 └── .github/
     ├── workflows/
@@ -174,9 +178,10 @@ fificup-2026-lab/
 
 ---
 
-## 🔬 The Model
+## The Model
 
 ### Poisson Goal Model
+
 Expected goals per team are computed from attack/defense ratings, rest days, venue altitude, and round pressure, then fed into a vectorized 8×8 score probability matrix:
 
 ```python
@@ -189,12 +194,15 @@ matrix = np.outer(pmf_a, pmf_b)    # (8,8) — 50× faster than nested loop
 Win/Draw/Loss probabilities = triangular sums of the matrix.
 
 ### Elo Blend
+
 Final outcome probabilities blend the Poisson model (70%) with Elo expected score (30%):
+
 ```
 P(A) = 1 / (1 + 10^((Elo_B - Elo_A) / 400))
 ```
 
 ### Validation — Qatar 2022
+
 | Metric | Result |
 |--------|--------|
 | Overall accuracy | **63%** (35 trackable matches) |
@@ -203,7 +211,9 @@ P(A) = 1 / (1 + 10^((Elo_B - Elo_A) / 400))
 | Upsets in data | 7 |
 
 ### LLM Plug-In
+
 All narrative generation routes through a single abstraction in `src/explainers.py`. Swap one line to activate Claude, GPT-4, or any provider:
+
 ```python
 def generate_narrative(prompt, context, api_key=None):
     # Replace this line with any LLM call
@@ -212,7 +222,7 @@ def generate_narrative(prompt, context, api_key=None):
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Library | Version | Purpose |
 |---------|---------|---------|
@@ -226,7 +236,7 @@ def generate_narrative(prompt, context, api_key=None):
 
 ---
 
-## 🔌 Optional: Claude AI Narratives
+## Optional: Claude AI Narratives
 
 Add your Anthropic API key in the sidebar to activate Claude-powered match previews:
 
@@ -235,11 +245,11 @@ Add your Anthropic API key in the sidebar to activate Claude-powered match previ
 ANTHROPIC_API_KEY = "sk-ant-..."
 ```
 
-Or toggle in the sidebar → **Claude AI Match Previews** → paste key.
+Or toggle directly in the sidebar under **Claude AI Match Previews**.
 
 ---
 
-## 📡 Data Pipeline
+## Data Pipeline
 
 Keep Elo ratings current with the weekly refresh script:
 
@@ -247,17 +257,17 @@ Keep Elo ratings current with the weekly refresh script:
 python scripts/fetch_elo_ratings.py
 ```
 
-Or wire it to GitHub Actions (already configured in `.github/workflows/update_elo.yml`) to run every Monday at 6am UTC.
+A GitHub Actions workflow (`.github/workflows/update_elo.yml`) runs this automatically every Monday at 6am UTC.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and how to submit a pull request.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code standards, and how to submit a pull request.
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Deploy to Streamlit Community Cloud
 - [ ] Real FIFA/Opta live data pipeline
@@ -270,15 +280,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and ho
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 All team ratings, predictions, and probability outputs use **sample data created for demonstration purposes only**. This project is not affiliated with, endorsed by, or connected to FIFA, the 2026 World Cup organizing committee, or any official football organization. Predictions are illustrative and should not be used for wagering or official analysis.
 
 ---
 
-## 📄 License
+## License
 
-MIT © 2026 — see [LICENSE](LICENSE) for details.
+MIT © 2026 H. Hunter, PhD, MPH — see [LICENSE](LICENSE) for details.
 
 ---
 
