@@ -13,7 +13,7 @@ from src.config import EXCITEMENT_FLAMES, UPSET_LABELS
 def generate_narrative(prompt: str, context: dict, api_key: str = None) -> str:
     """
     Entry point for narrative generation.
-    Pass api_key to activate Claude AI narratives; falls back to rule-based if unavailable.
+    Pass api_key to activate AI narratives; falls back to rule-based if unavailable.
     """
     if api_key:
         try:

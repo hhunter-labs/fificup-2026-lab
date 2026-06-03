@@ -40,7 +40,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Clickable Odds Board cards with `_pending_page` navigation pattern
 - Session prediction counter and cross-page team memory
 - Shareable prediction text card
-- Claude AI sidebar toggle with graceful fallback
+- AI narrative sidebar toggle with graceful fallback
 
 #### Data
 - 32 teams with 14 attributes each

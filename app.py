@@ -376,16 +376,16 @@ with st.sidebar:
 
     # Note: ← Home button is rendered by page_hero() on every inner page.
 
-    # ── Claude AI toggle ──
+    # ── AI narrative toggle ──
     st.markdown("<hr style='border-color:rgba(255,255,255,0.05);margin:.75rem 0;'>", unsafe_allow_html=True)
     st.markdown('<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#334155;margin-bottom:.5rem;">🤖 AI NARRATIVES</div>', unsafe_allow_html=True)
-    use_claude = st.toggle("Claude AI Match Previews", value=False, key="use_claude")
-    claude_key = None
-    if use_claude:
-        claude_key = st.text_input("Anthropic API Key", type="password", key="claude_key",
+    use_ai_narratives = st.toggle("AI Match Previews", value=False, key="use_ai_narratives")
+    ai_api_key = None
+    if use_ai_narratives:
+        ai_api_key = st.text_input("Anthropic API Key", type="password", key="ai_api_key",
                                    placeholder="sk-ant-...")
-        if claude_key:
-            st.markdown('<div style="font-size:10px;color:#22c55e;">✓ Claude active</div>', unsafe_allow_html=True)
+        if ai_api_key:
+            st.markdown('<div style="font-size:10px;color:#22c55e;">✓ AI active</div>', unsafe_allow_html=True)
         else:
             st.markdown('<div style="font-size:10px;color:#475569;">Enter key above</div>', unsafe_allow_html=True)
 
@@ -822,15 +822,15 @@ elif page == "⚽  Predict Match":
   <span style="font-size:9px;color:#334155;"><span class="live-dot"></span>Auto-updating · no button needed</span>
 </div>""", unsafe_allow_html=True)
 
-    # ── Match preview (Claude AI or rule-based) ──
+    # ── Match preview (AI or rule-based) ──
     with col_preview:
-        ai_label = "🤖 AI Preview (Claude)" if (use_claude and claude_key) else "🎙️ Match Preview"
+        ai_label = "🤖 AI Preview" if (use_ai_narratives and ai_api_key) else "🎙️ Match Preview"
         section_header(ai_label)
 
         prompt = build_match_prompt(pred, ta_row, tb_row)
         expl   = generate_match_explanation(pred, ta_row, tb_row) \
-                 if not (use_claude and claude_key) \
-                 else generate_narrative(prompt, {}, api_key=claude_key)
+                 if not (use_ai_narratives and ai_api_key) \
+                 else generate_narrative(prompt, {}, api_key=ai_api_key)
 
         st.markdown(render_prose(expl, size="15px"), unsafe_allow_html=True)
         if vr is not None:
@@ -1630,7 +1630,7 @@ Win/Draw/Loss = triangular sums. Most likely score = `argmax`.
 def generate_narrative(prompt, context):
     return _rule_based_narrative(prompt, context)  # ← replace with API call
 
-# Claude:
+# Example LLM integration:
 import anthropic
 client = anthropic.Anthropic(api_key="KEY")
 return client.messages.create(model="claude-opus-4-5", max_tokens=400,

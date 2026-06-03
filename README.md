@@ -22,7 +22,7 @@
 
 ## Author
 
-**H. Hunter, PhD, MPH**
+**Harry Hunter, PhD, MPH**
 [GitHub](https://github.com/hhunter-labs)
 
 ---
@@ -212,7 +212,7 @@ P(A) = 1 / (1 + 10^((Elo_B - Elo_A) / 400))
 
 ### LLM Plug-In
 
-All narrative generation routes through a single abstraction in `src/explainers.py`. Swap one line to activate Claude, GPT-4, or any provider:
+All narrative generation routes through a single abstraction in `src/explainers.py`. Swap one line to activate any AI provider — GPT-4, Gemini, or others:
 
 ```python
 def generate_narrative(prompt, context, api_key=None):
@@ -232,20 +232,20 @@ def generate_narrative(prompt, context, api_key=None):
 | NumPy + SciPy | latest | Vectorized Poisson PMF |
 | Plotly | 5.20+ | All charts + geo map |
 | Pillow | 10.0+ | Ball image background removal |
-| Anthropic SDK | 0.25+ | Optional Claude AI narratives |
+| Anthropic SDK | 0.25+ | Optional AI narratives |
 
 ---
 
-## Optional: Claude AI Narratives
+## Optional: AI-Powered Narratives
 
-Add your Anthropic API key in the sidebar to activate Claude-powered match previews:
+Add your Anthropic API key in the sidebar to activate AI-powered match previews:
 
 ```toml
 # .streamlit/secrets.toml (never commit this file)
 ANTHROPIC_API_KEY = "sk-ant-..."
 ```
 
-Or toggle directly in the sidebar under **Claude AI Match Previews**.
+Or toggle directly in the sidebar under **AI Match Previews**.
 
 ---
 
@@ -271,7 +271,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code standards, an
 
 - [ ] Deploy to Streamlit Community Cloud
 - [ ] Real FIFA/Opta live data pipeline
-- [ ] Claude API narrative generation (production)
+- [ ] AI narrative generation (production)
 - [ ] Full 48-team group stage simulation
 - [ ] Player-level injury + lineup modeling
 - [ ] Head-to-head historical records
@@ -288,7 +288,7 @@ All team ratings, predictions, and probability outputs use **sample data created
 
 ## License
 
-MIT © 2026 H. Hunter, PhD, MPH — see [LICENSE](LICENSE) for details.
+MIT © 2026 Harry Hunter, PhD, MPH — see [LICENSE](LICENSE) for details.
 
 ---
 
